@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Goodbye & See You Soon 💛</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: rgba(255, 255, 255, 0.08);
+      --text: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.72);
+      --accent: #ffd166;
+      --accent2: #06d6a0;
+      --danger: #ef476f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(255, 209, 102, 0.22), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(6, 214, 160, 0.20), transparent 55%),
+        radial-gradient(700px 500px at 50% 90%, rgba(239, 71, 111, 0.18), transparent 60%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+
+    header {
+      padding: 18px 0 10px;
+      display: grid;
+      gap: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing: -0.02em;
+    }
+
+    p.lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .span2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, var(--accent), #ffe29a);
+      color: #1b1b1b;
+      transition: transform 0.08s ease, filter 0.15s ease;
+    }
+
+    .btn:hover {
+      filter: brightness(1.02);
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.99);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .ticket-box {
+      margin-top: 12px;
+      border-radius: 14px;
+      padding: 14px;
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+      background: rgba(0, 0, 0, 0.18);
+      display: none;
+    }
+
+    .ticket-box.show {
+      display: block;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(6, 214, 160, 0.16);
+      border: 1px solid rgba(6, 214, 160, 0.28);
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .error {
+      color: var(--danger);
+      font-weight: 700;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .error.show {
+      display: block;
+    }
+
+    .map-embed {
+      margin-top: 10px;
+      width: 100%;
+      height: 420px;
+      border: 0;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    code.inline {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Bon voyage to Copenhagen ✈️🇩🇰</h1>
+      <p class="lead">
+        A tiny goodbye website with a surprise ticket and our shared Copenhagen map.
+      </p>
+    </header>
+
+    <section class="grid">
+      <!-- Ticket card -->
+      <div class="card">
+        <h2>🎟️ Your Museum Ticket</h2>
+        <p class="muted">
+          Click the button, enter the secret password, and your ticket appears.
+        </p>
+
+        <div class="row">
+          <button class="btn" id="ticketBtn">Get ticket</button>
+          <button class="btn secondary" id="hintBtn" type="button">Need a hint?</button>
+        </div>
+
+        <div class="error" id="errorMsg">Nope — that password isn’t right. Try again 💛</div>
+
+        <div class="ticket-box" id="ticketBox">
+          <div class="badge">✅ Ticket unlocked</div>
+          <h3 style="margin:10px 0 6px;">Copenhagen Museum Pass</h3>
+          <p class="muted" style="margin:0 0 10px;">
+            Present this page as your “ticket” — or download it as a text file.
+          </p>
+
+          <!-- OPTION A: Simple “ticket” text -->
+          <pre id="ticketText"
+            style="white-space:pre-wrap; margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.90);">
+🎟️ MUSEUM TICKET
+Name: Meike Anders
+Valid: Any day you choose
+From: Vy & Lars
+Message: We can’t wait to hear all the stories 💛
+          </pre>
+
+          <div class="row">
+            <a class="btn secondary" href="tickets.pdf" target="_blank">
+  Open ticket
+</a>
+            <button class="btn secondary" id="lockBtn" type="button">Lock again</button>
+          </div>
+
+          <!-- <p class="muted" style="margin:10px 0 0;">
+            Tip: Replace <code class="inline">[Her Name]</code> and the message in the HTML.
+          </p> -->
+        </div>
+      </div>
+
+      <!-- Map card -->
+      <div class="card">
+        <h2>🗺️ Our Copenhagen Map</h2>
+        <p class="muted">
+          This embeds your Google Maps list. Paste the embed link below.
+        </p>
+
+        <!-- Replace src with your Google Maps embed URL -->
+        <!-- <iframe
+          class="map-embed"
+          id="mapFrame"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.app.goo.gl/gWhUW3dRG3VDUe139">
+        </iframe> -->
+
+        <a class="btn" href="https://maps.app.goo.gl/gWhUW3dRG3VDUe139" target="_blank" rel="noopener">
+          Open our Copenhagen map list
+        </a>
+      </div>
+
+      <!-- Extra: instructions
+      <div class="card span2">
+        <h2>How to customize</h2>
+        <ol class="muted" style="line-height:1.6; margin: 10px 0 0; padding-left: 18px;">
+          <li>
+            Set the password: in the script below, change <code class="inline">SECRET_PASSWORD</code>.
+          </li>
+          <li>
+            Ticket content: edit the text inside the <code class="inline">&lt;pre id="ticketText"&gt;</code>.
+          </li>
+          <li>
+            Google Maps list embed:
+            <ul style="margin: 6px 0 0; padding-left: 18px;">
+              <li>Open your list in Google Maps</li>
+              <li>Tap <b>Share</b> → if you see <b>Embed a map</b>, copy that URL into the iframe <code class="inline">src</code></li>
+              <li>If your list can’t embed, instead replace the iframe with a normal link button to the share URL</li>
+            </ul>
+          </li>
+          <li>
+            Host it easily: GitHub Pages / Netlify / Vercel all work great for this single file.
+          </li>
+        </ol>
+      </div> -->
+    </section>
+  </div>
+
+  <script>
+    // === Customize this ===
+    const SECRET_PASSWORD = "copenhagen"; // change me
+
+    const ticketBtn = document.getElementById("ticketBtn");
+    const hintBtn = document.getElementById("hintBtn");
+    
+    const lockBtn = document.getElementById("lockBtn");
+
+    const ticketBox = document.getElementById("ticketBox");
+    const errorMsg = document.getElementById("errorMsg");
+    const ticketTextEl = document.getElementById("ticketText");
+
+    function showError(show) {
+      errorMsg.classList.toggle("show", !!show);
+    }
+
+    function unlockTicket() {
+      ticketBox.classList.add("show");
+      showError(false);
+      // scroll a bit so it feels like a reveal
+      ticketBox.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function lockTicket() {
+      ticketBox.classList.remove("show");
+      showError(false);
+    }
+
+    ticketBtn.addEventListener("click", () => {
+      const pw = prompt("Enter the secret password to unlock the ticket:");
+      if (pw === null) return; // user canceled
+      if (pw.trim() === SECRET_PASSWORD) {
+        unlockTicket();
+      } else {
+        showError(true);
+      }
+    });
+
+    hintBtn.addEventListener("click", () => {
+      alert("Hint: it’s the name of the city you’re moving to 😉");
+    });
+
+    lockBtn.addEventListener("click", lockTicket);
+  </script>
+</body>
+
+</html>
