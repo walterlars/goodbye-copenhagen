@@ -185,55 +185,56 @@
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
+
+    .divider {
+      height: 20px;
+    }
   </style>
 </head>
 
 <body>
   <div class="wrap">
     <header>
-      <h1>Bon voyage to Copenhagen ✈️🇩🇰</h1>
+      <h1>Goodbye Meike ✈️🇩🇰</h1>
       <p class="lead">
-        A tiny goodbye website with a surprise ticket and our shared Copenhagen map.
+        Hier findest du dein Ticket für das Museum und unsere Kopenhagen Liste.
       </p>
     </header>
 
     <section class="grid">
       <!-- Ticket card -->
       <div class="card">
-        <h2>🎟️ Your Museum Ticket</h2>
+        <h2>🎟️ Dein Museums Ticket</h2>
         <p class="muted">
-          Click the button, enter the secret password, and your ticket appears.
+          Drück den Knopf, gib das geheime Passwort ein, und dann kommt dein Ticket auch schon.
         </p>
 
         <div class="row">
-          <button class="btn" id="ticketBtn">Get ticket</button>
-          <button class="btn secondary" id="hintBtn" type="button">Need a hint?</button>
+          <button class="btn" id="ticketBtn">Ticket holen</button>
+          <button class="btn secondary" id="hintBtn" type="button">Hinweis?</button>
         </div>
 
-        <div class="error" id="errorMsg">Nope — that password isn’t right. Try again 💛</div>
+        <div class="error" id="errorMsg">Nope, das war das falsche Passwort, Try again 💛</div>
 
         <div class="ticket-box" id="ticketBox">
           <div class="badge">✅ Ticket unlocked</div>
-          <h3 style="margin:10px 0 6px;">Copenhagen Museum Pass</h3>
-          <p class="muted" style="margin:0 0 10px;">
-            Present this page as your “ticket” — or download it as a text file.
-          </p>
+          <h3 style="margin:10px 0 6px;">Kopenhagen Design Museum Pass</h3>
 
           <!-- OPTION A: Simple “ticket” text -->
           <pre id="ticketText"
             style="white-space:pre-wrap; margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; font-size: 13px; color: rgba(255,255,255,0.90);">
-🎟️ MUSEUM TICKET
+🎟️ MUSEUMS TICKET
 Name: Meike Anders
-Valid: Any day you choose
-From: Vy & Lars
-Message: We can’t wait to hear all the stories 💛
+Verfügbar: bis zum 16.01.2027
+Von: Vy & Lars
+Nachricht: Ich hoffe du hast ganz viel Spaß 💛
           </pre>
 
           <div class="row">
             <a class="btn secondary" href="tickets.pdf" target="_blank">
-  Open ticket
+  Ticket öffnen
 </a>
-            <button class="btn secondary" id="lockBtn" type="button">Lock again</button>
+            <button class="btn secondary" id="lockBtn" type="button">Verschließen</button>
           </div>
 
           <!-- <p class="muted" style="margin:10px 0 0;">
@@ -244,10 +245,8 @@ Message: We can’t wait to hear all the stories 💛
 
       <!-- Map card -->
       <div class="card">
-        <h2>🗺️ Our Copenhagen Map</h2>
-        <p class="muted">
-          This embeds your Google Maps list. Paste the embed link below.
-        </p>
+        <h2>🗺️ Unsere Kopenhagen Liste</h2>
+        <div class="divider">  </div>
 
         <!-- Replace src with your Google Maps embed URL -->
         <!-- <iframe
@@ -259,7 +258,7 @@ Message: We can’t wait to hear all the stories 💛
         </iframe> -->
 
         <a class="btn" href="https://maps.app.goo.gl/gWhUW3dRG3VDUe139" target="_blank" rel="noopener">
-          Open our Copenhagen map list
+          Öffne unsere Kopenhagen Liste.
         </a>
       </div>
 
@@ -291,7 +290,7 @@ Message: We can’t wait to hear all the stories 💛
 
   <script>
     // === Customize this ===
-    const SECRET_PASSWORD = "copenhagen"; // change me
+    const SECRET_PASSWORD = "kopenhagen"; // change me
 
     const ticketBtn = document.getElementById("ticketBtn");
     const hintBtn = document.getElementById("hintBtn");
@@ -321,7 +320,7 @@ Message: We can’t wait to hear all the stories 💛
     ticketBtn.addEventListener("click", () => {
       const pw = prompt("Enter the secret password to unlock the ticket:");
       if (pw === null) return; // user canceled
-      if (pw.trim() === SECRET_PASSWORD) {
+      if (pw.trim().toLowerCase() === SECRET_PASSWORD) {
         unlockTicket();
       } else {
         showError(true);
